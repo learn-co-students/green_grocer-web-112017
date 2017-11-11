@@ -55,3 +55,38 @@ coupons.each do |coupon|
 end
 
 puts "Your total is #{checkout(cart: cart, coupons: coupons)}"
+
+def consolidate_cart(array)
+	consolidated_hash = {}
+	array.map do |element|
+		element.map do |item, info|
+				consolidated_hash[item] = info
+		end
+	end
+	return consolidated_hash
+
+	i = 0
+	while i < array.length
+		count = array.count(array[i])
+		consolidated_hash[array[i].keys.join][:count] = count
+		i += 1
+	end
+
+	return consolidated_hash
+end
+
+# def consolidate_cart(array)
+# 		consolidated_hash = {}
+#
+# 		array.map do |element|
+# 			element.map do |item, info|
+# 					consolidated_hash[item] = info
+# 			end
+# 		end
+#
+# 		consolidated_hash.map do |k, v|
+# 			consolidated_hash[k][:count] = array.count(k=>v)
+# 		end
+#
+# 		return consolidated_hash
+# end
