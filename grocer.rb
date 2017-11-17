@@ -49,17 +49,12 @@ def checkout(cart, coupons)
   cart = consolidate_cart(cart)
   cart = apply_coupons(cart,coupons)
   cart = apply_clearance(cart)
-
   totals = cart.collect do |item, value|
     value[:price] * value[:count]
   end
-
   total = totals.reduce do |sum,val|
     sum += val
     sum
   end
-
   return total > 100 ? total - total * 0.1 : total
-
-
 end
